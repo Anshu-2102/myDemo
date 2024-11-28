@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\ANSBALAS\Downloads\SpringSecurity-main (1)\SpringSecurity-main\spring-boot3-jwt-main"/>
+			<item value="C:\Users\ANSBALAS\Downloads\SpringSecurity-main\SpringSecurity-main\01-spring-security-basicauth"/>
+			<item value="C:\Users\ANSBALAS\Downloads\1a-Eureka-server\1a-Eureka-server"/>
+			<item value="C:\Users\ANSBALAS\Downloads\Practice-main\Practice-main\springboot-jsp-helloworld-Sample"/>
+			<item value="C:\Users\ANSBALAS\Downloads\14-Spring-Rest-Hello\14-Spring-Rest-Hello"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

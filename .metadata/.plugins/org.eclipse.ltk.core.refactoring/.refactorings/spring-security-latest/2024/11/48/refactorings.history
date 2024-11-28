@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.cg.jwt.controller&apos; to &apos;spring-jwt-security-test-authService/src/main/java/com.cg.jwt.config&apos;&#x0D;&#x0A;- Original project: &apos;spring-security-latest&apos;&#x0D;&#x0A;- Destination element: &apos;spring-jwt-security-test-authService/src/main/java/com.cg.jwt.config&apos;&#x0D;&#x0A;- Original element: &apos;spring-security-latest/src/main/java/com.cg.jwt.controller&apos;" description="Copy package" destination="=spring-jwt-security-test-authService/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.cg.jwt.config" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.cg.jwt.controller" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1732691115148" version="1.0"/>
+</session>

@@ -1,0 +1,152 @@
+package com.cg.controller;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cg.entity.Product;
+import com.cg.exception.BadRequestException;
+import com.cg.exception.ResourceNotFoundException;
+import com.cg.service.IProductService;
+
+import jakarta.validation.Valid;
+
+
+@RequestMapping("/api")
+@RestController
+public class ProductController {
+	@Autowired
+	IProductService productService;
+	//@GetMapping(path="/products", produces = {MediaType.APPLICATION_XML_VALUE})
+	
+	
+	
+	//@GetMapping("/products")
+	
+	@RequestMapping("/products")
+	public List<Product> getProducts()
+	{
+		return productService.findAll();
+		
+	}
+	@GetMapping("/products1/{id}")
+	Optional<Product>findByProductIdFromDBWithException(@PathVariable int id) throws ResourceNotFoundException
+	{	Optional<Product> product = productService.findProductById(id);
+	
+    	product.orElseThrow(() -> new ResourceNotFoundException("Product not found for this id :: " + id));
+    	System.out.println(id);
+    return product;	
+	}
+
+	
+	//http://localhost:9090/api/products/101
+//	@GetMapping("/products/{id}")
+//	public Optional<Product>getProductById(@PathVariable int id)
+//	{
+//		return productService.findProductById(id);
+//	}
+	
+	
+	//http://localhost:9090/api/products/myProduct?id=101 use when sending data through form
+	@GetMapping("/products/myProduct")
+	public Optional<Product>getProductId(@RequestParam int id)
+	{
+		return productService.findProductById(id);
+	}
+	
+	
+	
+	@PostMapping("/products1")
+	public Product createmyProduct(@RequestBody Product p) throws BadRequestException
+	{
+		
+		if(p.getPrice()<=0)
+		{
+			throw new BadRequestException("price cannot be 0 or less than 0");
+		}
+	    if(p==null||p.getName()==null||p.getName()=="")
+		{
+			throw new BadRequestException("product name cannot be null");
+			
+		}
+		 return productService.createProduct(p);
+		
+	}
+	
+	
+	@DeleteMapping("/delete/{id}")
+	public String myDelete(@PathVariable int id) throws ResourceNotFoundException
+	{
+		Optional<Product> user = productService.findProductById(id);
+    	user.orElseThrow(() -> new ResourceNotFoundException("Order not found for this id :: " + id));
+		productService.deleteProduct(id);
+		if(productService.deleteProduct(id))
+		{
+			return "deleted";
+		}else
+		{
+			return "not found";
+		}
+		
+	}
+	
+	@PutMapping("/update")
+	public Product myUpdate(@RequestBody Product p) throws BadRequestException
+	{
+
+		if(p.getPrice()<=0)
+		{
+			throw new BadRequestException("price cannot be 0 or less than 0,cannot update");
+		}
+	    if(p==null||p.getName()==null||p.getName()=="")
+		{
+			throw new BadRequestException("product name cannot be null,cannot update");
+			
+		}
+		return productService.update(p);
+		
+	}
+	
+	@GetMapping("/byname/{name}")
+	public List<Product> getProdByName(@PathVariable String name)
+	{
+		return productService.getProductByName(name);
+	}
+	@GetMapping("/count/{name}")
+	public int getCountByNames(@PathVariable String name)
+	{
+		return productService.getCountByName(name);
+	}
+	
+	   @Value("${error.productNotFound}")
+	    private String productNotFoundMessage;
+	    @Value("${error.productDeletionFailed}")
+	    private String productDeletionFailedMessage;
+	    @Value("${error.productAlreadyExists}")
+	    private String productAlreadyExistsMessage;
+	    
+	
+	@PostMapping("/addproducts")
+    public Product addProduct(@RequestBody @Valid Product product) throws ResourceNotFoundException {
+        Optional<Product> existingProduct = productService.findProductById(product.getId());
+        if (existingProduct.isPresent()) {
+            throw new ResourceNotFoundException(String.format(productAlreadyExistsMessage, product.getName()));
+        }
+        return productService.createProduct(product);
+    }
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.cg.controller.HelloController&apos; to &apos;ProductController&apos;&#x0D;&#x0A;- Original project: &apos;2-Spring-Rest-Product-JSON-XML&apos;&#x0D;&#x0A;- Original element: &apos;com.cg.controller.HelloController&apos;&#x0D;&#x0A;- Renamed element: &apos;com.cg.controller.ProductController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;HelloController&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.cg.controller{HelloController.java[HelloController" matchStrategy="1" name="ProductController" qualified="false" references="true" similarDeclarations="false" stamp="1731907418641" textual="false" version="1.0"/>
+</session>

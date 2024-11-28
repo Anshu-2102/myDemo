@@ -1,0 +1,8 @@
+package com.cg;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="/01a-SPRING-MVC-PRODUCT-called-Feign/src/main/java/com/cg/service/ProductService.java")
+public interface OrderFeignClient {
+
+}
